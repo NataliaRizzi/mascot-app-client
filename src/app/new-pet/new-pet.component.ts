@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 
 
 
-import { Pet } from '../models/pet.model'
+import { Pet } from '../models/pet.model';
 import { log } from 'util';
 
 @Component({
@@ -28,7 +28,7 @@ export class NewPetComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.orgId = params['_id']
+      this.orgId = params['_id'];
     });
   }
 
@@ -36,13 +36,13 @@ export class NewPetComponent implements OnInit {
 
   sizes = ['Mini', 'Pequeño', 'Mediano', 'Grande', 'Extra Grande'];
 
-  pet = new Pet()
+  pet = new Pet();
 
   addPet() {
-    this.pet.organization = this.orgId
+    this.pet.organization = this.orgId;
     this.petService.addPet(this.pet)
       .subscribe(res => {
-        let id = res['_id'];
+        const id = res['_id'];
         this.router.navigate(['/pets', id]);
       });
   }

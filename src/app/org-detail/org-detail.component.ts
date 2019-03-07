@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { PetService } from '../pet.service';
-import { Org } from '../models/org.model'
+import { Org } from '../models/org.model';
 
 @Component({
   selector: 'app-org-detail',
@@ -21,7 +21,7 @@ export class OrgDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getOrg()
+    this.getOrg();
   }
 
   getOrg(): void {
@@ -37,7 +37,7 @@ export class OrgDetailComponent implements OnInit {
       data => console.log('data', data),
       error => console.log('error', error)
     );
-    this.getOrg()
+    this.getOrg();
   }
 
   rejectAdoption(queryId, petId, usrId): void {
@@ -47,11 +47,11 @@ export class OrgDetailComponent implements OnInit {
       data => console.log('data', data),
       error => console.log('error', error)
     );
-    this.getOrg()
+    this.getOrg();
   }
 
   goBack(): void {
-    this.location.back()
+    this.location.back();
   }
 
 }

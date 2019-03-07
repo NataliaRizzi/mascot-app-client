@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 
 import { PetService } from '../pet.service';
-import { Pet } from '../models/pet.model'
+import { Pet } from '../models/pet.model';
 
 @Component({
   selector: 'app-pet',
