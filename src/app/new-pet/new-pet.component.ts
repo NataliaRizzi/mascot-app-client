@@ -3,12 +3,11 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { PetService } from '../pet.service';
 import { NgForm } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
-import 'rxjs/add/observable/empty';
-import 'rxjs/add/observable/throw';
 
-import { Pet } from '../models/pet.model'
+
+import { Pet } from '../models/pet.model';
 import { log } from 'util';
 
 @Component({
@@ -20,7 +19,7 @@ import { log } from 'util';
 export class NewPetComponent implements OnInit {
 
   orgId: string;
-  
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -29,21 +28,21 @@ export class NewPetComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.orgId = params['_id']
+      this.orgId = params['_id'];
     });
   }
-  
+
   species = ['Perro', 'Gato'];
 
   sizes = ['Mini', 'Pequeño', 'Mediano', 'Grande', 'Extra Grande'];
 
-  pet = new Pet()
+  pet = new Pet();
 
-  addPet() {    
-    this.pet.organization = this.orgId
+  addPet() {
+    this.pet.organization = this.orgId;
     this.petService.addPet(this.pet)
       .subscribe(res => {
-        let id = res['_id'];
+        const id = res['_id'];
         this.router.navigate(['/pets', id]);
       });
   }

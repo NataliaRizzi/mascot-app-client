@@ -13,7 +13,7 @@ export class UserComponent implements OnInit {
   pets: Pet[];
   user: User;
   dismissible = true;
- 
+
   markAsRead(dismissedAlert: any, user: any): void {
     this.user.messages = this.user.messages.filter(alert => alert !== dismissedAlert);
     this.petService.markAsRead(dismissedAlert._id, user._id)
@@ -24,7 +24,7 @@ export class UserComponent implements OnInit {
   }
 
   constructor(private petService: PetService) { }
-  
+
   ngOnInit() {
     this.getPets();
     this.getUser();
@@ -33,14 +33,14 @@ export class UserComponent implements OnInit {
   getPets(): void {
     this.petService.getPets()
       .subscribe(pets => {
-        this.pets = pets.filter(i => i.available !== false)
+        this.pets = pets.filter(i => i.available !== false);
       });
-  } 
+  }
 
   getUser(): void {
     const id = '5b005cecd5de87305632855b';
     this.petService.getUser(id)
-      .subscribe(user => this.user = user)
+      .subscribe(user => this.user = user);
   }
 
   read(): void {
