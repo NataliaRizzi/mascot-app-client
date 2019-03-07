@@ -1,5 +1,5 @@
 <ng-container *ngIf="pets">
-  <div class="each-container">    
+  <div class="each-container">
     <div *ngFor="let pet of pets" class="card card-block card-header">
       <div class="card_img_text_container">
         <div class="image-container">
@@ -25,19 +25,19 @@
         </div>
       </div>
       <button type="button" class="btn btn-primary"
-        routerLink="/pets/{{pet._id}}">{{pet.name}}
+        routerLink="/pets/{user._id}/{{pet._id}}">{{pet.name}}
       </button>
       <!-- <div class="container-adoption-button">
-        <button 
-          (click)="adoptionRequest(pet.organization._id)" 
-          type="button" 
+        <button
+          (click)="adoptionRequest(pet.organization._id)"
+          type="button"
           class="btn btn-primary"
         >
           Adoptar
         </button>
-        <button 
-          (click)="tempResidencyRequest(pet.organization._id)" 
-          type="button" 
+        <button
+          (click)="tempResidencyRequest(pet.organization._id)"
+          type="button"
           class="btn btn-primary"
         >
           Acoger

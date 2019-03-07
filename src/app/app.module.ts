@@ -15,6 +15,7 @@ import { OrgsComponent } from './orgs/orgs.component';
 import { NewPetComponent } from './new-pet/new-pet.component';
 import { OrgDetailComponent } from './org-detail/org-detail.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     OrgsComponent,
     NewPetComponent,
     OrgDetailComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    NavigationComponent
   ],
   imports: [
     AlertModule.forRoot(),

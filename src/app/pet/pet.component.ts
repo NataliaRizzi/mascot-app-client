@@ -27,15 +27,15 @@ export class PetComponent implements OnInit {
   }
 
   getPet(): void {
-    const id = this.route.snapshot.paramMap.get('_id');
+    const id = this.route.snapshot.paramMap.get('_petId');
     this.petService.getPet(id)
       .subscribe(pet => this.pet = pet);
   }
 
   adoptionRequest(orgId): void {
-    const petId = this.route.snapshot.paramMap.get('_id');
-    const usrId = '5b005cecd5de87305632855b';
-    this.petService.adoptionRequest(orgId, petId, usrId)
+    const petId = this.route.snapshot.paramMap.get('_petId');
+    const userId = this.route.snapshot.paramMap.get('_userId');
+    this.petService.adoptionRequest(orgId, petId, userId)
       .subscribe(
         data => console.log('data', data),
         error => console.log('error', error)

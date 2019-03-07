@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { PetService } from '../pet.service';
 import { Pet } from '../models/pet.model';
 import { User } from '../models/user.model';
+import { stringify } from '@angular/core/src/render3/util';
 
 @Component({
   selector: 'app-user',
@@ -16,14 +17,12 @@ export class UserComponent implements OnInit {
 
   markAsRead(dismissedAlert: any, user: any): void {
     this.user.messages = this.user.messages.filter(alert => alert !== dismissedAlert);
-    this.petService.markAsRead(dismissedAlert._id, user._id)
-      .subscribe(
-        data => console.log('data', data),
-        error => console.log('error', error)
-    );
+    this.petService
+      .markAsRead(dismissedAlert._id, user._id)
+      .subscribe(data => console.log('data', data), error => console.log('error', error));
   }
 
-  constructor(private petService: PetService) { }
+  constructor(private petService: PetService) {}
 
   ngOnInit() {
     this.getPets();
@@ -31,16 +30,15 @@ export class UserComponent implements OnInit {
   }
 
   getPets(): void {
-    this.petService.getPets()
-      .subscribe(pets => {
-        this.pets = pets.filter(i => i.available !== false);
-      });
+    this.petService.getPets().subscribe(pets => {
+      this.pets = pets.filter(i => i.available !== false);
+    });
   }
 
-  getUser(): void {
+  getUser(): User {
     const id = '5b005cecd5de87305632855b';
-    this.petService.getUser(id)
-      .subscribe(user => this.user = user);
+    this.petService.getUser(id).subscribe(user => (this.user = user));
+    return this.user;
   }
 
   read(): void {
