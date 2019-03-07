@@ -8,6 +8,7 @@ export class Org {
   //   public web?: string
   // ) { }
 
+  // why an Id ? is being create by the db
   _id: string;
   name: string;
   location: string;
