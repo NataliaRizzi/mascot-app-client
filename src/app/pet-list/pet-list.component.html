@@ -1,0 +1,17 @@
+<div class="pets-container">
+  <mat-card class="pets-card" *ngFor="let pet of pets">
+    <mat-card-header>
+      <mat-card-title>{{pet.name}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="pet.image" alt="pet photos">
+    <mat-card-content>
+      <p>
+        Pet age: {{pet.age}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

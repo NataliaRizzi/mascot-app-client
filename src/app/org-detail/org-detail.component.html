@@ -2,18 +2,17 @@
   <h2>{{ org?.name }}</h2>
   <div>
     <p>
-      {{org.location}}
+      {{ org.location }}
     </p>
     <p>
-      {{org.web}}
+      {{ org.web }}
     </p>
     <p>
-      {{org.email}}
+      {{ org.email }}
     </p>
   </div>
-  <button routerLink="/orgs/{{org._id}}/pets">Nueva Mascota</button>
+  <button routerLink="/orgs/{{ org._id }}/pets">Nueva Mascota</button>
   <button (click)="goBack()">Atras</button>
-
   <!-- <div *ngFor="let query of org.queries">
     <div class="notifications-container">
       <alert type="success">
@@ -26,9 +25,8 @@
 
   <div class="pet-container" class="card card-block card-header">
     <div *ngFor="let pet of org.pets">
-      <h4>{{pet.name}}</h4>
-      <h4>{{pet.breed}}</h4>
-
+      <h4>{{ pet.name }}</h4>
+      <h4>{{ pet.breed }}</h4>
     </div>
   </div>
 </div>
