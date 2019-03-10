@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {  HttpClientModule } from '@angular/common/http';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
@@ -16,7 +17,8 @@ import { NewPetComponent } from './new-pet/new-pet.component';
 import { OrgDetailComponent } from './org-detail/org-detail.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { NavigationComponent } from './navigation/navigation.component';
-
+import { PetListComponent } from './pet-list/pet-list.component';
+import {MatCardModule} from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,8 @@ import { NavigationComponent } from './navigation/navigation.component';
     NewPetComponent,
     OrgDetailComponent,
     UserDetailComponent,
-    NavigationComponent
+    NavigationComponent,
+    PetListComponent
   ],
   imports: [
     AlertModule.forRoot(),
@@ -35,7 +38,9 @@ import { NavigationComponent } from './navigation/navigation.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatCardModule
   ],
   providers: [PetService],
   bootstrap: [AppComponent]

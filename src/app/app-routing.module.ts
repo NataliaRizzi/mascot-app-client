@@ -7,6 +7,7 @@ import { OrgsComponent } from './orgs/orgs.component';
 import { OrgDetailComponent } from './org-detail/org-detail.component';
 import { PetComponent } from './pet/pet.component';
 import { NewPetComponent } from './new-pet/new-pet.component';
+import { PetListComponent } from './pet-list/pet-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/user', pathMatch: 'full' },
@@ -15,7 +16,9 @@ const routes: Routes = [
   { path: 'orgs', component: OrgsComponent },
   { path: 'orgs/:_id', component: OrgDetailComponent },
   { path: 'orgs/:_id/pets', component: NewPetComponent },
-  { path: 'pets/:_userId/:_petId', component: PetComponent }
+  // { path: 'pets/:_userId/:_petId', component: PetComponent },
+  { path: 'pets', component: PetListComponent }
+
 ];
 
 @NgModule({

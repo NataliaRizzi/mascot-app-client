@@ -42,8 +42,7 @@ export class NewPetComponent implements OnInit {
     this.pet.organization = this.orgId;
     this.petService.addPet(this.pet)
       .subscribe(res => {
-        const id = res['_id'];
-        this.router.navigate(['/pets', id]);
+        this.router.navigate(['/pets']);
       });
   }
 
