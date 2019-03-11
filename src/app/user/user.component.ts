@@ -4,6 +4,7 @@ import { PetService } from '../pet.service';
 import { Pet } from '../models/pet.model';
 import { User } from '../models/user.model';
 import { stringify } from '@angular/core/src/render3/util';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -22,7 +23,7 @@ export class UserComponent implements OnInit {
       .subscribe(data => console.log('data', data), error => console.log('error', error));
   }
 
-  constructor(private petService: PetService) {}
+  constructor(private petService: PetService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.getPets();
@@ -36,8 +37,9 @@ export class UserComponent implements OnInit {
   }
 
   getUser(): User {
-    const id = '5b005cecd5de87305632855b';
+    const id = this.route.snapshot.paramMap.get('_id');
     this.petService.getUser(id).subscribe(user => (this.user = user));
+    console.log(this.user, "my user id")
     return this.user;
   }
 
