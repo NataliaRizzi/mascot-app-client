@@ -11,7 +11,7 @@ import { PetListComponent } from './pet-list/pet-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/user', pathMatch: 'full' },
-  { path: 'user', component: UserComponent },
+  { path: 'user/:_id', component: UserComponent },
   { path: 'user/:_id', component: UserDetailComponent },
   { path: 'orgs', component: OrgsComponent },
   { path: 'orgs/:_id', component: OrgDetailComponent },
