@@ -1,34 +1,32 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  "newProjectRoot": "",
   "projects": {
     "mascot-app": {
-      "root": "",
-      "sourceRoot": "src",
+      "root": "apps/mascot-app/",
+      "sourceRoot": "apps/mascot-app/src",
       "projectType": "application",
-      "prefix": "app",
+      "prefix": "mascot-app",
       "schematics": {
-        "@schematics/angular:component": {
-          "style": "sass"
+        "@nrwl/schematics:component": {
+          "style": "scss"
         }
       },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/mascot-app",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "outputPath": "dist/apps/mascot-app",
+            "index": "apps/mascot-app/src/index.html",
+            "main": "apps/mascot-app/src/main.ts",
+            "polyfills": "apps/mascot-app/src/polyfills.ts",
+            "tsConfig": "apps/mascot-app/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "apps/mascot-app/src/favicon.ico",
+              "apps/mascot-app/src/assets"
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["apps/mascot-app/src/styles.scss"],
             "scripts": [],
             "es5BrowserSupport": true
           },
@@ -36,8 +34,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "apps/mascot-app/src/environments/environment.ts",
+                  "with": "apps/mascot-app/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -76,46 +74,36 @@
             "browserTarget": "mascot-app:build"
           }
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
-          }
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "apps/mascot-app/tsconfig.app.json",
+              "apps/mascot-app/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/mascot-app/jest.config.js",
+            "tsConfig": "apps/mascot-app/tsconfig.spec.json",
+            "setupFile": "apps/mascot-app/src/test-setup.ts"
           }
         }
       }
     },
     "mascot-app-e2e": {
-      "root": "e2e/",
+      "root": "apps/mascot-app-e2e",
       "projectType": "application",
       "prefix": "",
       "architect": {
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@nrwl/builders:cypress",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
+            "cypressConfig": "apps/mascot-app-e2e/cypress.json",
+            "tsConfig": "apps/mascot-app-e2e/tsconfig.e2e.json",
             "devServerTarget": "mascot-app:serve"
           },
           "configurations": {
@@ -127,13 +115,26 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": "apps/mascot-app-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/schematics"
+  },
+  "schematics": {
+    "@nrwl/schematics:application": {
+      "style": "scss"
+    },
+    "@nrwl/schematics:library": {
+      "style": "scss"
     }
   },
   "defaultProject": "mascot-app"
