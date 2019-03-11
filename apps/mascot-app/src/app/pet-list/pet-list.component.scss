@@ -1,0 +1,22 @@
+.pets-card {
+  width: 44vw;
+  border-radius: 2px;
+  margin: 1rem;
+}
+
+.pets-container {
+  overflow-y: auto;
+  height: 100vh;
+  margin: 10px;
+}
+
+img {
+  max-width: 400px;
+  box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.14), 2 10px 10px 0 rgba(0, 0, 0, 0.12),
+    2 12px 14px -1px rgba(0, 0, 0, 0.3);
+}
+
+p,
+img {
+  margin: 10px;
+}

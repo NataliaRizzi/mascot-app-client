@@ -1,0 +1,141 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "mascot-app": {
+      "root": "apps/mascot-app/",
+      "sourceRoot": "apps/mascot-app/src",
+      "projectType": "application",
+      "prefix": "mascot-app",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/mascot-app",
+            "index": "apps/mascot-app/src/index.html",
+            "main": "apps/mascot-app/src/main.ts",
+            "polyfills": "apps/mascot-app/src/polyfills.ts",
+            "tsConfig": "apps/mascot-app/tsconfig.app.json",
+            "assets": [
+              "apps/mascot-app/src/favicon.ico",
+              "apps/mascot-app/src/assets"
+            ],
+            "styles": ["apps/mascot-app/src/styles.scss"],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/mascot-app/src/environments/environment.ts",
+                  "with": "apps/mascot-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "mascot-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "mascot-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "mascot-app:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/mascot-app/tsconfig.app.json",
+              "apps/mascot-app/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/mascot-app/jest.config.js",
+            "tsConfig": "apps/mascot-app/tsconfig.spec.json",
+            "setupFile": "apps/mascot-app/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "mascot-app-e2e": {
+      "root": "apps/mascot-app-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/mascot-app-e2e/cypress.json",
+            "tsConfig": "apps/mascot-app-e2e/tsconfig.e2e.json",
+            "devServerTarget": "mascot-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "mascot-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/mascot-app-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/schematics"
+  },
+  "schematics": {
+    "@nrwl/schematics:application": {
+      "style": "scss"
+    },
+    "@nrwl/schematics:library": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "mascot-app"
+}
