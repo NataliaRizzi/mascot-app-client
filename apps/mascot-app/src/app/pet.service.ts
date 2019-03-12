@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, empty } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Pet } from './models/pet.model';

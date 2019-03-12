@@ -14,7 +14,7 @@ import { Pet } from '../models/pet.model';
 
 export class PetComponent implements OnInit {
 // check the best option
-  @Input() pet: Pet;
+  @Input() petDetail: Pet;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,14 +23,13 @@ export class PetComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getPet();
   }
 
-  getPet(): void {
-    const id = this.route.snapshot.paramMap.get('_petId');
-    this.petService.getPet(id)
-      .subscribe(pet => this.pet = pet);
-  }
+  // getPet(): void {
+  //   const id = this.route.snapshot.paramMap.get('_petId');
+  //   this.petService.getPet(id)
+  //     .subscribe(pet => this.pet = pet);
+  // }
 
   adoptionRequest(orgId): void {
     const petId = this.route.snapshot.paramMap.get('_petId');

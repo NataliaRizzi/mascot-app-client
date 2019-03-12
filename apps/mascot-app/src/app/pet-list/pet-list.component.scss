@@ -10,13 +10,21 @@
   margin: 10px;
 }
 
-img {
+img{
   max-width: 400px;
   box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.14), 2 10px 10px 0 rgba(0, 0, 0, 0.12),
     2 12px 14px -1px rgba(0, 0, 0, 0.3);
+}
+
+.mat-card{
+  box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.14), 2 10px 10px 0 rgba(0, 0, 0, 0.12),
+    2 12px 14px -1px rgba(0, 0, 0, 0.3);
+    max-width: 80vw;
+    background-color: red;
 }
 
 p,
 img {
   margin: 10px;
 }
+

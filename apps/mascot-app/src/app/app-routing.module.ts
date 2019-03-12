@@ -10,14 +10,13 @@ import { NewPetComponent } from './new-pet/new-pet.component';
 import { PetListComponent } from './pet-list/pet-list.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/user', pathMatch: 'full' },
-  { path: 'users/:_id', component: UserComponent },
-  { path: 'user/:_id', component: UserDetailComponent },
+  { path: '', redirectTo: '/pets', pathMatch: 'full' },
+  { path: 'user/:_id', component: UserComponent },
   { path: 'orgs', component: OrgsComponent },
   { path: 'orgs/:_id', component: OrgDetailComponent },
   { path: 'orgs/:_id/pets', component: NewPetComponent },
   { path: 'pets/:_userId/:_petId', component: PetComponent },
-  // { path: 'pets', component: PetListComponent }
+  { path: 'pets', component: PetListComponent }
 
 ];
 
