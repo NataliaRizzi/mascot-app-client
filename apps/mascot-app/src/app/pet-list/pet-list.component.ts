@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Pet } from '../models/pet.model';
 import { PetService } from '../pet.service';
 
@@ -8,11 +8,7 @@ import { PetService } from '../pet.service';
   styleUrls: ['./pet-list.component.scss']
 })
 export class PetListComponent implements OnInit {
-pets: Pet[]
-  constructor(private petService: PetService) { }
-
-  ngOnInit() {
-    this.petService.getPets().subscribe(pets =>this.pets = pets )
-  }
-
+  @Input() petsList: Pet[];
+  constructor(private petService: PetService) {}
+  ngOnInit() {}
 }

@@ -97,8 +97,8 @@ describe('PetService', () => {
   });
 
   test('should return one pet by id', (done) => {
-    service.getPet('507f191e810c19729de860ea').subscribe(pet => {
-      expect(pet).toEqual(pet);
+    service.getPet('507f191e810c19729de860ea').subscribe(foundPet => {
+      expect(foundPet).toEqual(pet);
       done();
     });
 
