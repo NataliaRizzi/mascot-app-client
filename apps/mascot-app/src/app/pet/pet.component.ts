@@ -31,23 +31,21 @@ export class PetComponent implements OnInit {
     this.petService
       .adoptionRequest(this.petDetail.organization, petId, userId)
       .subscribe(
-        data => this.sendAdoption=data,
-        error => console.log('error', error),
-        () => {
+        data => {
+          this.sendAdoption = data;
           this.openSnackBar();
-        }
+        },
+        error => console.log('error', error)
       );
   }
 
   openSnackBar() {
     this.snackBar.open('your place was added succesfull', 'close', {
       duration: 30000,
-      verticalPosition : 'top',
-      panelClass:"snack-confirm"
+      verticalPosition: 'top',
+      panelClass: 'snack-confirm'
     });
   }
-
-
 
   goBack(): void {
     this.location.back();

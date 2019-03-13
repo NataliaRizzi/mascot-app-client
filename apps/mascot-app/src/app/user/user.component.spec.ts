@@ -11,18 +11,19 @@ import {
   HttpTestingController
 } from '@angular/common/http/testing';
 import { PetComponent } from '../pet/pet.component';
-import { MatCardModule,MatSnackBar } from '@angular/material';
+import { MatCardModule, MatSnackBar, MatSnackBarModule } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { ActivatedRouteStub } from '../testing/activated-route-stub';
 import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('UserComponent', () => {
   let component: UserComponent;
-  let petComponent : PetComponent
   let fixture: ComponentFixture<UserComponent>;
-  let fixturePet: ComponentFixture<PetComponent>;
   let httpClient: HttpTestingController;
   let activatedRoute: ActivatedRouteStub;
+  let petService: PetService;
+  let snackBarService: MatSnackBar;
 
   beforeEach(() => {
     // create a new istance of the active route
@@ -40,7 +41,8 @@ describe('UserComponent', () => {
         AlertModule,
         CollapseModule,
         HttpClientTestingModule,
-        MatCardModule
+        MatCardModule,
+        MatSnackBarModule
       ],
 
       providers: [
@@ -48,8 +50,7 @@ describe('UserComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: activatedRoute
-        },
-        MatSnackBar,{provide: MatSnackBar, useValue:{}}
+        }
       ]
     }).compileComponents();
   }));
@@ -57,8 +58,8 @@ describe('UserComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(UserComponent);
     component = fixture.componentInstance;
-    fixturePet = TestBed.createComponent(PetComponent);
-    petComponent = fixturePet.componentInstance;
+    petService = TestBed.get(PetService);
+    snackBarService = TestBed.get(MatSnackBar);
     activatedRoute.setParamMap({ _id: '507f191e810c19729de860ef' });
     fixture.detectChanges();
     httpClient = TestBed.get(HttpTestingController);
@@ -138,17 +139,20 @@ describe('UserComponent', () => {
     httpClient.verify();
   });
 
-
-  test('it should send an adoption request', ()=>{
-      httpClient.expectOne('http://localhost:3000/pets').flush([pet]);
-      httpClient
-        .expectOne('http://localhost:3000/users/507f191e810c19729de860ef')
-        .flush(user);
-      fixture.detectChanges();
-      const  adoptionButton = fixture.debugElement.query(By.css('[data-protector-id="pet-adoption"]'))
-    adoptionButton.nativeElement.click();
-    fixturePet.detectChanges();
-// expect(petComponent.adoptionRequest.emit).toHaveBeenCalled();
-    })
-
+  test('it should send an adoption request', () => {
+    spyOn(petService, 'adoptionRequest').and.returnValue(of({}));
+    spyOn(snackBarService, 'open');
+    httpClient.expectOne('http://localhost:3000/pets').flush([pet]);
+    httpClient
+      .expectOne('http://localhost:3000/users/507f191e810c19729de860ef')
+      .flush(user);
+    fixture.detectChanges();
+    const adoptionButton = fixture.debugElement.query(
+      By.css('[data-protector-id="pet-adoption"]')
+    );
+    adoptionButton.triggerEventHandler('click', {});
+    expect(petService.adoptionRequest).toHaveBeenCalled();
+    expect(snackBarService.open).toHaveBeenCalled()
+    //  httpClient.verify();
+  });
 });
