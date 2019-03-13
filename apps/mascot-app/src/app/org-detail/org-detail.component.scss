@@ -1,6 +1,44 @@
+.details {
+  font-family: "Arial Rounded MT Bold";
+  padding-left: 20px;
+  padding-bottom: 30px;
+  align-content: center;
+  display: block;
+  padding-left: 550px;
+  padding-bottom: 20px;
+}
+
+.newpet-btn, .back-btn {
+ margin: 5px;
+ color: #fff;
+ background-color: #00bcd4;
+ border-color: #00bcd4;
+ font-size: 13px;
+ font-family: "Arial Rounded MT Bold";
+ border-radius: 4px;
+}
+
+
 .pet-container {
   display: flex;
-  margin: 0px
+}
+
+.wrapper {
+  width:200px;
+  max-width: 200px;
+	padding: 20px 30px;
+	background: #f4f7f8;
+	margin: 10px auto;
+	padding: 20px;
+  border-radius: 8px;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 20px;
+  text-align: center;
+}
+
+h4 {
+  margin: 10px;
+  display: block;
 }
 
 p {

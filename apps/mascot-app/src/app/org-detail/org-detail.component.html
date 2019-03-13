@@ -1,5 +1,5 @@
-<div *ngIf="org" class="details" class="card card-block card-header">
-  <h2>{{ org?.name }}</h2>
+<div *ngIf="org" class="card card-block card-header details">
+  <h2>{{ org.name }}</h2>
   <div>
     <p>
       {{ org.location }}
@@ -11,8 +11,8 @@
       {{ org.email }}
     </p>
   </div>
-  <button routerLink="/orgs/{{ org._id }}/pets">Nueva Mascota</button>
-  <button (click)="goBack()">Atras</button>
+  <button class="newpet-btn" routerLink="/orgs/{{ org._id }}/pets">New Pet</button>
+  <button class="back-btn" (click)="goBack()">Back</button>
   <!-- <div *ngFor="let query of org.queries">
     <div class="notifications-container">
       <alert type="success">
@@ -22,11 +22,10 @@
       </alert>
     </div>
   </div> -->
-
-  <div class="pet-container" class="card card-block card-header">
-    <div *ngFor="let pet of org.pets">
-      <h4>{{ pet.name }}</h4>
-      <h4>{{ pet.breed }}</h4>
-    </div>
+</div>
+<div class="card card-block card-header pet-container">
+  <div class="wrapper" *ngFor="let pet of org.pets">
+    <h4>{{ pet.name }}</h4>
+    <h4>{{ pet.breed }}</h4>
   </div>
 </div>

@@ -32,9 +32,9 @@ export class NewPetComponent implements OnInit {
     });
   }
 
-  species = ['Perro', 'Gato'];
+  species = ['Dog', 'Cat'];
 
-  sizes = ['Mini', 'Pequeño', 'Mediano', 'Grande', 'Extra Grande'];
+  sizes = ['Mini', 'Small', 'Medium', 'Large', 'Extra Large'];
 
   pet = new Pet();
 

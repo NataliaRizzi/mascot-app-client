@@ -5,5 +5,33 @@
 }
 
 .ng-invalid:not(form)  {
-  border-left: 5px solid #a94442; /* red */
+  border-left: 5px solid rgb(140,109,158); /* red */
 }
+h1 {
+  font-size: 40px;
+  margin-top: 46px;
+}
+
+
+.container {
+  text-align: center;
+  font-family: "Arial Rounded MT Bold";
+  margin-bottom: 20px;
+  max-width: 500px;
+	padding: 10px 20px;
+	margin: 10px auto;
+	padding: 20px;
+	background: rgb( 242,242,242);
+  border-radius: 8px;
+  border: 1px solid rgb(140, 109, 158);
+  box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+}
+
+.title {
+  padding-top: 20px;
+  margin-left: 45px;
+  display: flex;
+  display: inline-flex;
+  margin-bottom: 15px;
+}
+

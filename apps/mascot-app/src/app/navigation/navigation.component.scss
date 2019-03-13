@@ -2,7 +2,22 @@
   display: flex;
   justify-content: space-between;
   padding: 25px 50px 25px;
-  background-color:#3f51b5
+  background: #0052D4;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #6FB1FC, #4364F7, #0052D4);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #6FB1FC, #4364F7, #0052D4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+h1, dropdown-item {
+  font-size: 50px;
+  font-family: "Arial Rounded MT Bold";
+  
+}
+
+.dropdown-item {
+  font-size: 15px;
+  font-family: "Arial Rounded MT Bold";
+  
 }
 
 .btn-group {
@@ -22,4 +37,11 @@ span {
   color: #fff;
   background-color: #00bcd4;
   border-color: #00bcd4;
+  font-size: 15px;
+  font-family: "Arial Rounded MT Bold";
+}
+
+.paragraph {
+  font-size: 20px;
+  font-family: "Arial Rounded MT Bold";
 }
