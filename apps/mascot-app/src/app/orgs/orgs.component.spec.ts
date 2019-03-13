@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-
+import { PetService } from '../pet.service';
 import { OrgsComponent } from './orgs.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('OrgsComponent', () => {
   let component: OrgsComponent;
@@ -9,11 +10,11 @@ describe('OrgsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, HttpClientTestingModule],
+      declarations: [OrgsComponent],
 
-      declarations: [ OrgsComponent ]
-    })
-    .compileComponents();
+      providers: [PetService]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
