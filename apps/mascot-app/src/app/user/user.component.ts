@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { PetService } from '../pet.service';
 import { Pet } from '../models/pet.model';
 import { User } from '../models/user.model';
-import { stringify } from '@angular/core/src/render3/util';
 import { ActivatedRoute } from '@angular/router';
-
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -17,26 +15,28 @@ export class UserComponent implements OnInit {
   dismissible = true;
 
   markAsRead(dismissedAlert: any, user: any): void {
-    this.user.messages = this.user.messages.filter(alert => alert !== dismissedAlert);
+    this.user.messages = this.user.messages.filter(
+      alert => alert !== dismissedAlert
+    );
     this.petService
       .markAsRead(dismissedAlert._id, user._id)
-      .subscribe(data => console.log('data', data), error => console.log('error', error));
+      .subscribe(
+        data => console.log('data', data),
+        error => console.log('error', error)
+      );
   }
 
   constructor(private petService: PetService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.getPets();
     this.getUser();
+    this.getPets();
   }
 
   getPets(): void {
     this.petService.getPets().subscribe(pets => {
       this.pets = pets.filter(i => i.available !== false);
-      console.log(this.pets, 'pets')
-
     });
-
   }
 
   getUser(): User {

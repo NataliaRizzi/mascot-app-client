@@ -1,30 +1,22 @@
-<app-pet-list [petsList]="pets" *ngIf="pets"> </app-pet-list>
+<ng-container *ngIf="user; else: noUser">
+  <app-pet-list [petsList]="pets" *ngIf="pets"></app-pet-list>
 
-      <!-- <div class="container-adoption-button">
-        <button
-          (click)="adoptionRequest(pet.organization._id)"
-          type="button"
-          class="btn btn-primary"
-        >
-          Adoptar
-        </button>
-        <button
-          (click)="tempResidencyRequest(pet.organization._id)"
-          type="button"
-          class="btn btn-primary"
-        >
-          Acoger
-        </button>
-      </div> -->
-
-<ng-container *ngIf="user">
-  <div *ngFor="let message of user.messages">
-    <alert [type]="message.alert" [dismissible]="dismissible" (onClosed)="markAsRead(message, user)">{{ message.message }}</alert>
-  </div>
-  <h3 *ngIf="user.pets > 0">Tus Mascotas</h3>
-  <div class="adopted">
-    <div *ngFor="let pet of user.pets" class="card card-block card-header">
-      <h3>{{pet.pet.name}}</h3>
+  <ng-container>
+    <div *ngFor="let message of user.messages">
+      <alert
+        [type]="message.alert"
+        [dismissible]="dismissible"
+        (onClosed)="markAsRead(message, user)"
+        >{{ message.message }}</alert
+      >
     </div>
-  </div>
+    <h3 *ngIf="user.pets > 0">Tus Mascotas</h3>
+    <div class="adopted">
+      <div *ngFor="let pet of user.pets" class="card card-block card-header">
+        <h3>{{ pet.pet.name }}</h3>
+      </div>
+    </div>
+  </ng-container>
 </ng-container>
+
+<ng-template #noUser> <h1>No User </h1></ng-template>

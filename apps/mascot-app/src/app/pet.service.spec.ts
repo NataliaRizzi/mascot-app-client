@@ -3,11 +3,9 @@ import {
   HttpClientTestingModule,
   HttpTestingController
 } from '@angular/common/http/testing';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { PetService } from './pet.service';
 
 describe('PetService', () => {
-  let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
   const pet = {
     _id: '507f191e810c19729de860ea',
@@ -50,7 +48,6 @@ describe('PetService', () => {
       imports: [HttpClientTestingModule]
     });
 
-    httpClient = TestBed.get(HttpClient);
     httpTestingController = TestBed.get(HttpTestingController);
     service = TestBed.get(PetService);
   });
@@ -75,19 +72,16 @@ describe('PetService', () => {
     req.flush(pet);
   });
 
-  test('should handle an error when adding a pet', (done) => {
+  test('should handle an error when adding a pet', done => {
     service.addPet().subscribe(newPet => {
-      expect(newPet).toEqual({"error": "Missing body"});
+      expect(newPet).toEqual({ error: 'Missing body' });
       done();
-    })
+    });
     const req = httpTestingController.expectOne('http://localhost:3000/pets');
-    req.flush({error:'Missing body' });
-
-
+    req.flush({ error: 'Missing body' });
   });
 
   test('should get all pets', done => {
-
     service.getPets().subscribe(allPets => {
       expect(allPets).toEqual(pets);
       done();
@@ -96,11 +90,14 @@ describe('PetService', () => {
     httpTestingController.expectOne('http://localhost:3000/pets').flush(pets);
   });
 
-  test('should return one pet by id', (done) => {
+  test('should return one pet by id', done => {
     service.getPet('507f191e810c19729de860ea').subscribe(foundPet => {
       expect(foundPet).toEqual(pet);
       done();
     });
 
-    httpTestingController.expectOne('http://localhost:3000/pets/507f191e810c19729de860ea').flush(pet);  });
+    httpTestingController
+      .expectOne('http://localhost:3000/pets/507f191e810c19729de860ea')
+      .flush(pet);
+  });
 });
