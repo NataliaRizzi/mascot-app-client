@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PetService } from '../pet.service';
 import { Org } from '../models/org.model';
-import {
-  HttpClientTestingModule,
-  HttpTestingController
-} from '@angular/common/http/testing';
-// import {pet, user, organization} from {'../testing/mock.data'}
 
 @Component({
   selector: 'app-orgs',
