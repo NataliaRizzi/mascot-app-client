@@ -35,7 +35,8 @@ export class PetComponent implements OnInit {
           this.sendAdoption = data;
         },
         error => console.log('error', error),
-        ()=>{          this.openSnackBar();
+        () => {
+          this.openSnackBar();
         }
       );
   }

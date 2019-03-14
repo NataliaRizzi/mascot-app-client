@@ -14,17 +14,17 @@ export class UserComponent implements OnInit {
   user: User;
   dismissible = true;
 
-  markAsRead(dismissedAlert: any, user: any): void {
-    this.user.messages = this.user.messages.filter(
-      alert => alert !== dismissedAlert
-    );
-    this.petService
-      .markAsRead(dismissedAlert._id, user._id)
-      .subscribe(
-        data => console.log('data', data),
-        error => console.log('error', error)
-      );
-  }
+  // markAsRead(dismissedAlert: any, user: any): void {
+  //   this.user.messages = this.user.messages.filter(
+  //     alert => alert !== dismissedAlert
+  //   );
+  //   this.petService
+  //     .markAsRead(dismissedAlert._id, user._id)
+  //     .subscribe(
+  //       data => console.log('data', data),
+  //       error => console.log('error', error)
+  //     );
+  // }
 
   constructor(private petService: PetService, private route: ActivatedRoute) {}
 

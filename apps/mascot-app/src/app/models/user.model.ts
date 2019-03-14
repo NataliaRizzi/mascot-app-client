@@ -4,5 +4,5 @@ export class User {
   email: string;
   location: string;
   messages: string[];
-  pets: string[{}]
+  pets: string[]
 }

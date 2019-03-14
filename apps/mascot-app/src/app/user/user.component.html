@@ -3,13 +3,13 @@
 
   <ng-container>
     <div *ngFor="let message of user.messages">
-      <alert
+      <!-- <alert
         [type]="message.alert"
         [dismissible]="dismissible"
         (onClosed)="markAsRead(message, user)"
         >{{ message.message }}</alert
       >
-    </div>
+    </div> -->
     <h3 *ngIf="user.pets > 0">Tus Mascotas</h3>
     <div class="adopted">
       <div *ngFor="let pet of user.pets" class="card card-block card-header">
