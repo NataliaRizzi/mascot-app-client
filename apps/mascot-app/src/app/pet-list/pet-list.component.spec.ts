@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatCardModule } from '@angular/material';
 import { PetListComponent } from './pet-list.component';
+import {PetComponent} from '../pet/pet.component'
 import { PetService } from '../pet.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -10,7 +11,7 @@ describe('PetListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PetListComponent],
+      declarations: [PetListComponent,PetComponent],
       imports: [MatCardModule,HttpClientTestingModule],
       providers:[ PetService]
     }).compileComponents();

@@ -18,7 +18,7 @@ import { OrgDetailComponent } from './org-detail/org-detail.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { PetListComponent } from './pet-list/pet-list.component';
-import {MatCardModule} from '@angular/material';
+import {MatCardModule,  MatSnackBarModule} from '@angular/material';
 import { NxModule } from '@nrwl/nx';
 @NgModule({
   declarations: [
@@ -42,7 +42,8 @@ import { NxModule } from '@nrwl/nx';
     HttpClientModule,
     BrowserAnimationsModule,
     MatCardModule,
-    NxModule.forRoot()
+    NxModule.forRoot(),
+    MatSnackBarModule
   ],
   providers: [PetService],
   bootstrap: [AppComponent]

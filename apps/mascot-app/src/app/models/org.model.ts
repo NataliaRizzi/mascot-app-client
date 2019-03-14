@@ -1,5 +1,4 @@
 export class Org {
-
   // constructor(
   //   public _id: string,
   //   public name: string,
@@ -14,5 +13,6 @@ export class Org {
   location: string;
   email: string;
   web: string;
-
+  queries: [{}];
+  pets: { pet_id: string }[];
 }

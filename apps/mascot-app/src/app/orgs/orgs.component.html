@@ -1,12 +1,15 @@
-<ul class="orgs">
-  <li *ngFor="let org of orgs">
-    <a routerLink="/orgs/{{org._id}}">
-      <h1>{{org.name}}</h1>
-    </a>
-  </li>
-</ul>
+ <ng-container *ngIf="orgs; else noOrgs">
+    <ul class="orgs">
+        <li *ngFor="let org of orgs">
+          <a routerLink="/orgs/{{org._id}}">
+            <h1 data-protector-id="org-name">{{ org.name }}</h1>
+          </a>
+        </li>
+      </ul>
+</ng-container>
+<ng-template #noOrgs>
+    <h1>No Orgs exist at the moment</h1>
+</ng-template>
 
 
 
-
-<!-- <app-new-pet></app-new-pet> -->

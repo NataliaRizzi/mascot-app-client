@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 import { PetService } from '../pet.service';
 import { Pet } from '../models/pet.model';
@@ -11,56 +11,43 @@ import { Pet } from '../models/pet.model';
   templateUrl: './pet.component.html',
   styleUrls: ['./pet.component.scss']
 })
-
 export class PetComponent implements OnInit {
-// check the best option
+  // check the best option
   @Input() petDetail: Pet;
+  private sendAdoption: {};
 
   constructor(
     private route: ActivatedRoute,
     private petService: PetService,
-    private location: Location
-  ) { }
+    private location: Location,
+    private snackBar: MatSnackBar
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  // getPet(): void {
-  //   const id = this.route.snapshot.paramMap.get('_petId');
-  //   this.petService.getPet(id)
-  //     .subscribe(pet => this.pet = pet);
-  // }
-
-  adoptionRequest(orgId): void {
-    const petId = this.route.snapshot.paramMap.get('_petId');
-    const userId = this.route.snapshot.paramMap.get('_userId');
-    this.petService.adoptionRequest(orgId, petId, userId)
+  adoptionRequest(): void {
+    const petId = this.petDetail._id;
+    const userId = this.route.snapshot.paramMap.get('_id');
+    this.petService
+      .adoptionRequest(this.petDetail.organization, petId, userId)
       .subscribe(
-        data => console.log('data', data),
+        data => {
+          this.sendAdoption = data;
+          this.openSnackBar();
+        },
         error => console.log('error', error)
       );
-    this.goBack();
-
-    // const id = this.route.snapshot.paramMap.get('_id');
-    // this.petService.getPet(id)
-    //   .subscribe(pet => this.pet = pet);
   }
-  // adoptionRequest(org: {}, pet: String, user: String): Observable<Org> {
-  //   console.log('345', org, user, pet);
 
-  //   const url = `${this.petUrl}/orgs/${org._id}`
-  //   org.queries.push({user, pet})
-  //   console.log('url', url);
-  //   console.log('org', org);
-  //   console.log('<Org>', <Org>);
-  //   return this.http.put<Org>(url, org)
-  //     .pipe(
-  //       catchError(this.handleError('a', org))
-  //     )
-  // }
+  openSnackBar() {
+    this.snackBar.open('your place was added succesfull', 'close', {
+      duration: 30000,
+      verticalPosition: 'top',
+      panelClass: 'snack-confirm'
+    });
+  }
 
   goBack(): void {
     this.location.back();
   }
-
 }
