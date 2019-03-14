@@ -33,15 +33,16 @@ export class PetComponent implements OnInit {
       .subscribe(
         data => {
           this.sendAdoption = data;
-          this.openSnackBar();
         },
-        error => console.log('error', error)
+        error => console.log('error', error),
+        ()=>{          this.openSnackBar();
+        }
       );
   }
 
   openSnackBar() {
     this.snackBar.open('your place was added succesfull', 'close', {
-      duration: 30000,
+      duration: 3000,
       verticalPosition: 'top',
       panelClass: 'snack-confirm'
     });
