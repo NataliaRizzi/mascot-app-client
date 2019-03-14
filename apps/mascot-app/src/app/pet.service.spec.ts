@@ -4,24 +4,10 @@ import {
   HttpTestingController
 } from '@angular/common/http/testing';
 import { PetService } from './pet.service';
+import { pet, organization, user } from './testing/mock.data';
 
 describe('PetService', () => {
   let httpTestingController: HttpTestingController;
-  const pet = {
-    _id: '507f191e810c19729de860ea',
-    adopted: false,
-    available: true,
-    species: 'Kitzi',
-    breed: 'Thai',
-    name: 'Expresso',
-    age: 1,
-    weight: 3.4,
-    size: 'Small',
-    location: 'Stuttgart',
-    owner: null,
-    image: 'https://images.dog.ceo/breeds/borzoi/n02090622_6131.jpg',
-    organization: '507f191e810c19729de860eb'
-  };
   const pets = [
     pet,
     {
@@ -67,7 +53,6 @@ describe('PetService', () => {
       done();
     });
     const req = httpTestingController.expectOne('http://localhost:3000/pets');
-
     expect(req.request.method).toEqual('POST');
     req.flush(pet);
   });
@@ -77,6 +62,7 @@ describe('PetService', () => {
       expect(newPet).toEqual({ error: 'Missing body' });
       done();
     });
+
     const req = httpTestingController.expectOne('http://localhost:3000/pets');
     req.flush({ error: 'Missing body' });
   });
@@ -100,4 +86,99 @@ describe('PetService', () => {
       .expectOne('http://localhost:3000/pets/507f191e810c19729de860ea')
       .flush(pet);
   });
+
+  test('should return all organizations', done => {
+    service.getOrgs().subscribe(orgs => {
+      expect(orgs).toEqual(organization);
+      done();
+    });
+
+    httpTestingController
+      .expectOne('http://localhost:3000/orgs')
+      .flush(organization);
+  });
+
+  test('should return one organization by id', done => {
+    service.getOrg('507f191e810c19729de860eb').subscribe(foundOrg => {
+      expect(foundOrg).toEqual(organization);
+      done();
+    });
+
+    httpTestingController
+      .expectOne('http://localhost:3000/orgs/507f191e810c19729de860eb')
+      .flush(organization);
+  });
+
+  test('should return one user by id', done => {
+    service.getUser('507f191e810c19729de860ef').subscribe(foundUser => {
+      expect(foundUser).toEqual(user);
+      done();
+    });
+
+    httpTestingController
+      .expectOne(`http://localhost:3000/users/${user._id}`)
+      .flush(user);
+  });
+
+  test('should send an adoption request', done => {
+    service
+      .adoptionRequest(organization._id, pet._id, user._id)
+      .subscribe(response => {
+        expect(response).toEqual({
+          org: organization._id,
+          pet: pet._id,
+          user: user._id
+        });
+        done();
+      });
+
+    httpTestingController
+      .expectOne(`http://localhost:3000/orgs/${organization._id}`)
+      .flush({
+        org: organization._id,
+        pet: pet._id,
+        user: user._id
+      });
+  });
+
+  test('should accept an adoption request', done => {
+    service
+      .acceptAdoption('23423494z', organization._id, pet._id, user._id)
+      .subscribe(adoption => {
+        expect(adoption).toEqual({
+          org: organization._id,
+          pet: pet._id,
+          query: '23423494z'
+        });
+        done()
+      });
+    httpTestingController
+      .expectOne(`http://localhost:3000/users/${user._id}/accepted`)
+      .flush({
+        org: organization._id,
+        pet: pet._id,
+        query: '23423494z'
+      });
+  });
+
+  xtest('should reject an adoption request', (done) => {
+    service
+    .acceptAdoption('23423494z', organization._id, pet._id, user._id)
+    .subscribe(adoption => {
+      expect(adoption).toEqual({
+        org: organization._id,
+        pet: pet._id,
+        query: '23423494z'
+      });
+      done()
+    });
+  httpTestingController
+    .expectOne(`http://localhost:3000/users/${user._id}/rejected`)
+    .flush({
+      org: organization._id,
+      pet: pet._id,
+      query: '23423494z'
+    });
+  });
+
 });

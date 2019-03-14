@@ -13,6 +13,6 @@ export class Org {
   location: string;
   email: string;
   web: string;
-  queries: [];
+  queries: [{}];
   pets: { pet_id: string }[];
 }

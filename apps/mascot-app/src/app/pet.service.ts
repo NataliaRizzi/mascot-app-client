@@ -75,17 +75,17 @@ export class PetService {
     .pipe(catchError((error: HttpErrorResponse) => this.handleAngularJsonBug(error)));
   }
 
-  rejectAdoption(query: String, org: String, pet: String, user: String): Observable<User> {
-    const url = `${this.petUrl}/users/${user}/rejected`;
-    const rejectionRes = { org, pet, query };
-    return this.http.put<User>(url, rejectionRes)
-    .pipe(catchError((error: HttpErrorResponse) => this.handleAngularJsonBug(error)));
-  }
+  // rejectAdoption(query: String, org: String, pet: String, user: String): Observable<User> {
+  //   const url = `${this.petUrl}/users/${user}/rejected`;
+  //   const rejectionRes = { org, pet, query };
+  //   return this.http.put<User>(url, rejectionRes)
+  //   .pipe(catchError((error: HttpErrorResponse) => this.handleAngularJsonBug(error)));
+  // }
 
-  markAsRead(_id, user): Observable<User> {
-    const url = `${this.petUrl}/users/${user}/markAsRead`;
-    const message = { _id, read: true };
-    return this.http.put<User>(url, message)
-    .pipe(catchError((error: HttpErrorResponse) => this.handleAngularJsonBug(error)));
-  }
+  // markAsRead(_id, user): Observable<User> {
+  //   const url = `${this.petUrl}/users/${user}/markAsRead`;
+  //   const message = { _id, read: true };
+  //   return this.http.put<User>(url, message)
+  //   .pipe(catchError((error: HttpErrorResponse) => this.handleAngularJsonBug(error)));
+  // }
 }

@@ -33,6 +33,9 @@ export const organization: Org = {
     location: 'Barcelona',
     email: 'helpwow@gmail.com',
     web: 'www.helpwow.com',
-    queries: [],
+    queries: [{accepted:false,
+      _id:'5c82a25465c1a314b22b2135',
+      user:'5b005cecd5de87305632855b',
+      pet:'5c7ffd00828f0f89ba7f366f'}],
     pets: [{ pet_id: '507f191e810c19729de860ea' }]
 }
